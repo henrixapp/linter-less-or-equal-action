@@ -38,7 +38,7 @@ const exec = require('@actions/exec');
         core.setOutput("errors", errors);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
-        await exec.exec("git checkout origin/master", null,options);
+        await exec.exec(`git checkout origin/${core.getInput("compare_branch")}`, null,options);
         try {
             let number = await exec.exec(command, null, options);
         } catch (error) {

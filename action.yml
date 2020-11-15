@@ -19,6 +19,9 @@ inputs:
   cwd:
     description: place to execute command
     required: true
+  compare_branch:
+    description: which branch to compare with
+    required: true
 outputs:
   pass:
     description: Whether the check has passed
