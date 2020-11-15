@@ -1,0 +1,14 @@
+name: 'Linter less or equal action'
+description: 'Ensure that there are less or equal Linter problems'
+inputs:
+  linters:  # id of input
+    description: 'What to lint'
+    required: true
+outputs:
+  pass:
+    description: Whether the check has passed
+  results: # id of output
+    description: 'The results of the linting process'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
