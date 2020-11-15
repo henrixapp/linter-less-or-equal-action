@@ -46,7 +46,8 @@ const exec = __webpack_require__(423);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
         let compareBranch = core.getInput("compare_branch");
-        await exec.exec(`git fetch origin main ${compareBranch} && git checkout origin/${compareBranch}`, null,options);
+        await exec.exec(`git fetch origin  ${compareBranch}`);
+        await exec.exec(`git checkout origin/${compareBranch}`, null,options);
         try {
             let number = await exec.exec(command, null, options);
         } catch (error) {
