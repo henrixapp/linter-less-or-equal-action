@@ -11,8 +11,8 @@ jobs:
       uses: henrixapp/linter-less-or-equal-action@v0.3
       with:
         name: EsLint
-        command: npx eslint -f summary . 
-        total_regexp: \d+ problems in total
+        command: npx eslint  . 
+        total_regexp: \d+ problems
         errors_regexp: \d+ errors
         problems_regexp: \d+ problems
     # Use the output from the `hello` step
