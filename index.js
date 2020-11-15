@@ -37,7 +37,8 @@ const exec = require('@actions/exec');
         console.log(`${total} ${errors} ${warnings}`);
         core.setOutput("errors", errors);
         core.setOutput("warnings", warnings);
-        await exec.exec("git reset --hard HEAD~1", null,options);
+        //reset --hard HEAD~1
+        await exec.exec("git log", null,options);
         try {
             let number = await exec.exec(command, null, options);
         } catch (error) {
