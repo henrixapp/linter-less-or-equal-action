@@ -32,7 +32,11 @@ options.listeners = {
   }
 };
     options.cwd = core.getInput("cwd");
-  await exec.exec(command,null,options);
+    try{
+  number = await exec.exec(command,null,options);
+    } catch (error){
+        
+    }
   total = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
   errors = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
   problems = parseInt(myOutput.match(problemsRegExp)[0].match(/\d+/));
