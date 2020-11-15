@@ -45,7 +45,7 @@ const exec = __webpack_require__(423);
         core.setOutput("errors", errors);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
-        await exec.exec("git log", null,options);
+        await exec.exec("git checkout origin/master", null,options);
         try {
             let number = await exec.exec(command, null, options);
         } catch (error) {
