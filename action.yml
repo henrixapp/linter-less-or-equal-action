@@ -1,5 +1,5 @@
 name: 'Linter less or equal action'
-description: 'Ensure that there are less or equal Linter problems'
+description: 'Ensure that there are less or equal Linter warnings'
 inputs:
   name:  # id of input
     description: 'What to lint'
@@ -10,7 +10,7 @@ inputs:
   total_regexp:
     description: the extractor
     required: true
-  problems_regexp:
+  warnings_regexp:
     description: the extractor
     required: true
   errors_regexp:
@@ -24,8 +24,8 @@ outputs:
     description: Whether the check has passed
   errors: # id of output
     description: 'The results of the linting process'
-  problems:
-    description: "Number of problems"
+  warnings:
+    description: "Number of warnings"
 runs:
   using: 'node12'
   main: 'dist/index.js'

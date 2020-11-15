@@ -8,47 +8,65 @@ module.exports =
 const core = __webpack_require__(24);
 const github = __webpack_require__(16);
 const exec = __webpack_require__(423);
-(async function(){try {
-  // `who-to-greet` input defined in action metadata file
-  const linter = core.getInput('name');
-  const command = core.getInput('command');
-  const totalRegExp = RegExp(core.getInput('total_regexp'));
-  const errorsRegExp = RegExp(core.getInput('errors_regexp'));
-  const problemsRegExp = RegExp(core.getInput('problems_regexp'));
+(async function () {
+    try {
+        // `who-to-greet` input defined in action metadata file
+        const linter = core.getInput('name');
+        const command = core.getInput('command');
+        const totalRegExp = RegExp(core.getInput('total_regexp'));
+        const errorsRegExp = RegExp(core.getInput('errors_regexp'));
+        const warningsRegExp = RegExp(core.getInput('warnings_regexp'));
 
-  console.log(`${linter} : ${command} ${totalRegExp} ${errorsRegExp} ${problemsRegExp}`);
+        console.log(`${linter} : ${command} ${totalRegExp} ${errorsRegExp} ${warningsRegExp}`);
 
 
-let myOutput = '';
-let myError = '';
+        let myOutput = '';
+        let myError = '';
 
-const options = {};
-options.listeners = {
-  stdout: (data) => {
-    myOutput += data.toString();
-  },
-  stderr: (data) => {
-    myError += data.toString();
-  }
-};
-    options.cwd = core.getInput("cwd");
-    try{
-  number = await exec.exec(command,null,options);
-    } catch (error){
-        
+        const options = {};
+        options.listeners = {
+            stdout: (data) => {
+                myOutput += data.toString();
+            },
+            stderr: (data) => {
+                myError += data.toString();
+            }
+        };
+        options.cwd = core.getInput("cwd");
+        try {
+            let number = await exec.exec(command, null, options);
+        } catch (error) {
+
+        }
+        let total = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
+        let errors = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
+        let warnings = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
+        console.log(`${total} ${errors} ${warnings}`);
+        core.setOutput("errors", errors);
+        core.setOutput("warnings", warnings);
+        await exec.exec("git reset --hard HEAD~1", options);
+        try {
+            let number = await exec.exec(command, null, options);
+        } catch (error) {
+
+        }
+        let totalB = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
+        let errorsB = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
+        let warningsB = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
+        if(totalB<total){
+            core.setFailed("There are now more errors and warnings in total!");
+        }
+        if(errorsB<errors){
+            core.setFailed("There are now more errors in total!");
+        }
+        if(warningsB<warnings){
+            core.setFailed("There are now more warnings in total!");
+        }
+        const payload = JSON.stringify(github.context.payload, undefined, 2);
+        console.log(`The event payload: ${payload}`);
+    } catch (error) {
+        core.setFailed(error.message);
     }
-  total = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
-  errors = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
-  problems = parseInt(myOutput.match(problemsRegExp)[0].match(/\d+/));
-  console.log(`${total} ${errors} ${problems}`);
-  core.setOutput("errors",errors);
-  core.setOutput("problems",problems);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
-}
 })();
 
 /***/ }),
