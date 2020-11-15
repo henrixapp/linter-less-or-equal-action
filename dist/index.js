@@ -33,10 +33,12 @@ options.listeners = {
 };
     options.cwd = core.getInput("cwd");
   await exec.exec(command,null,options);
-  console.log(parseInt(myOutput.match(totalRegExp)[0].match(/\d+/)));
-  console.log(parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/)));
-  console.log(parseInt(myOutput.match(problemsRegExp)[0].match(/\d+/)));
-
+  total = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
+  errors = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
+  problems = parseInt(myOutput.match(problemsRegExp)[0].match(/\d+/));
+  console.log(`${total} ${errors} ${problems}`);
+  core.setOutput("errors",errors);
+  core.setOutput("problems",problems);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
