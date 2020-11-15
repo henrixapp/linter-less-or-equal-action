@@ -5,15 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to check linter errors
     steps:
+    - uses: actions/checkout@v2
     - name: Linter count
       id: hello
-      uses: henrixapp/linter-less-or-equal-action@v0.2
+      uses: henrixapp/linter-less-or-equal-action@v0.3
       with:
         name: EsLint
         command: npx eslint -f summary . 
-        total_regexp: /\d+ problems in total/
-        errors_regexp: /\d+ errors/
-        problems_regexp: /\d+ problems/
+        total_regexp: \d+ problems in total
+        errors_regexp: \d+ errors
+        problems_regexp: \d+ problems
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"

@@ -16,11 +16,16 @@ inputs:
   errors_regexp:
     description: the extractor
     required: true
+  cwd:
+    description: place to execute command
+    required: true
 outputs:
   pass:
     description: Whether the check has passed
-  results: # id of output
+  errors: # id of output
     description: 'The results of the linting process'
+  problems:
+    description: "Number of problems"
 runs:
   using: 'node12'
   main: 'dist/index.js'
