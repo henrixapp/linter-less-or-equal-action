@@ -1,8 +1,20 @@
 name: 'Linter less or equal action'
 description: 'Ensure that there are less or equal Linter problems'
 inputs:
-  linters:  # id of input
+  name:  # id of input
     description: 'What to lint'
+    required: true
+  command:
+    description: Tool to use
+    required: true
+  total_regexp:
+    description: the extractor
+    required: true
+  problems_regexp:
+    description: the extractor
+    required: true
+  errors_regexp:
+    description: the extractor
     required: true
 outputs:
   pass:

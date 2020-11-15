@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Linter count
       id: hello
-      uses: henrixapp/linter-less-or-equal-action@v0.1
+      uses: henrixapp/linter-less-or-equal-action@v0.2
       with:
         name: EsLint
         command: npx eslint -f summary . 
