@@ -66,7 +66,7 @@ const exec = __webpack_require__(423);
             core.setFailed("There are now more warnings in total!");
         }
         const payload = JSON.stringify(github.context.payload, undefined, 2);
-        console.log(`The event payload: ${payload}`);
+        console.log(`The event payload: ${payload}`)
     } catch (error) {
         core.setFailed(error.message);
     }
