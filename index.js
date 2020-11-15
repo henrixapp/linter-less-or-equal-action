@@ -20,6 +20,7 @@ const exec = require('@actions/exec');
         options.listeners = {
             stdout: (data) => {
                 myOutput += data.toString();
+                console.log(myOutput.length);
             },
             stderr: (data) => {
                 myError += data.toString();

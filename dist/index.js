@@ -27,6 +27,7 @@ const exec = __webpack_require__(423);
         options.listeners = {
             stdout: (data) => {
                 myOutput += data.toString();
+                console.log(myOutput.length);
             },
             stderr: (data) => {
                 myError += data.toString();
