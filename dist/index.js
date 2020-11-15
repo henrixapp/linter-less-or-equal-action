@@ -48,6 +48,8 @@ const exec = __webpack_require__(423);
         let compareBranch = core.getInput("compare_branch");
         await exec.exec(`git fetch origin  ${compareBranch}`);
         await exec.exec(`git checkout origin/${compareBranch}`, null,options);
+        myOutput = "";
+        myError = "";
         try {
             let number = await exec.exec(command, null, options);
         } catch (error) {
