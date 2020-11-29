@@ -37,16 +37,20 @@ const exec = __webpack_require__(423);
         let compareBranch = core.getInput("compare_branch");
         await exec.exec(`git fetch origin  ${compareBranch}`);
         let checkedFiles = '.';
+        let addedFiles = '';
         if(core.getInput("mode")!="all"){
             await exec.exec(`git diff --name-only --diff-filter=M origin/${compareBranch}`,null, options);
             checkedFiles = myOutput.replace(/\n/g, " ");
+            myOutput = '';
+            await exec.exec(`git diff --name-only --diff-filter=A origin/${compareBranch}`,null, options);
+            addedFiles = myOutput.replace(/\n/g, " ");
             myOutput = '';
         }
         if(checkedFiles == "") {
             checkedFiles = ".";
         }
         try {
-            let number = await exec.exec(`${command} ${checkedFiles}`, null, options);
+            let number = await exec.exec(`${command} ${checkedFiles} ${addedFiles}`, null, options);
         } catch (error) {
 
         }
