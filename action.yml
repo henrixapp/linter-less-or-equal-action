@@ -25,6 +25,9 @@ inputs:
   mode:
     description: Mode of the compare (all vs. changed)
     required: true
+  include:
+    description: which files to be included.
+    required: true
 outputs:
   pass:
     description: Whether the check has passed

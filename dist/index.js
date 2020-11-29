@@ -40,10 +40,22 @@ const exec = __webpack_require__(423);
         let addedFiles = '';
         if(core.getInput("mode")!="all"){
             await exec.exec(`git diff --name-only --diff-filter=M origin/${compareBranch}`,null, options);
+            let include = new RegExp(core.getInput("include"));
+            checkedFiles = myOutput.split(/\n/g).map(function(s){
+                if(include.test(s)){
+                    return s;
+                }
+                return '';
+            }).join( ' ');
             checkedFiles = myOutput.replace(/\n/g, " ");
             myOutput = '';
             await exec.exec(`git diff --name-only --diff-filter=A origin/${compareBranch}`,null, options);
-            addedFiles = myOutput.replace(/\n/g, " ");
+            addedFiles =  myOutput.split(/\n/g).map(function(s){
+                if(include.test(s)){
+                    return s;
+                }
+                return '';
+            }).join( ' ');
             myOutput = '';
         }
         if(checkedFiles == "") {
