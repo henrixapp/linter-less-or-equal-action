@@ -22,6 +22,9 @@ inputs:
   compare_branch:
     description: which branch to compare with
     required: true
+  mode:
+    description: Mode of the compare (all vs. changed)
+    required: true
 outputs:
   pass:
     description: Whether the check has passed

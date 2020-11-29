@@ -47,6 +47,11 @@ which branch should be compared to.
 
 **Required** true
 
+### mode
+
+check all files or only those who where changed.
+
+**Required** true
 ## Example usage
 
 Please make sure to checkout your project before!

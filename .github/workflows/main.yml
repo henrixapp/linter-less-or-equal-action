@@ -11,8 +11,9 @@ jobs:
       uses: henrixapp/linter-less-or-equal-action@v1
       with:
         name: EsLint
-        command: npx eslint  . 
+        command: npx eslint  
         total_regexp: \d+ problems
         errors_regexp: \d+ errors
         warnings_regexp: \d+ warnings
         compare_branch: main
+        mode: changed

@@ -27,8 +27,16 @@ const exec = require('@actions/exec');
             }
         };
         options.cwd = core.getInput("cwd");
+        let compareBranch = core.getInput("compare_branch");
+        await exec.exec(`git fetch origin  ${compareBranch}`);
+        let checkedFiles = '.';
+        if(core.getInput("mode")!="all"){
+            await exec.exec(`git diff --name-only ${compareBranch}`,null, options);
+            checkedFiles = myOutput.replace("\n", " ");
+            myOutput = '';
+        }
         try {
-            let number = await exec.exec(command, null, options);
+            let number = await exec.exec(`${command} ${checkedFiles}`, null, options);
         } catch (error) {
 
         }
@@ -39,8 +47,7 @@ const exec = require('@actions/exec');
         core.setOutput("errors", errors);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
-        let compareBranch = core.getInput("compare_branch");
-        await exec.exec(`git fetch origin  ${compareBranch}`);
+        
         await exec.exec(`git checkout origin/${compareBranch}`, null,options);
         myOutput = "";
         myError = "";
@@ -61,8 +68,6 @@ const exec = require('@actions/exec');
         if(warningsB<warnings){
             core.setFailed("There are now more warnings in total!");
         }
-        const payload = JSON.stringify(github.context.payload, undefined, 2);
-        console.log(`The event payload: ${payload}`);
     } catch (error) {
         core.setFailed(error.message);
     }
