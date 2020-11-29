@@ -55,7 +55,7 @@ const exec = require('@actions/exec');
         myOutput = "";
         myError = "";
         try {
-            let number = await exec.exec(command, null, options);
+            let number = await exec.exec(`${command} ${checkedFiles}`, null, options);
         } catch (error) {
 
         }

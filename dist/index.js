@@ -62,7 +62,7 @@ const exec = __webpack_require__(423);
         myOutput = "";
         myError = "";
         try {
-            let number = await exec.exec(command, null, options);
+            let number = await exec.exec(`${command} ${checkedFiles}`, null, options);
         } catch (error) {
 
         }
