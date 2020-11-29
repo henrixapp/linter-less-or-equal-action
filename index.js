@@ -35,6 +35,9 @@ const exec = require('@actions/exec');
             checkedFiles = myOutput.replace("\n", " ");
             myOutput = '';
         }
+        if(checkedFiles == "") {
+            checkedFiles = ".";
+        }
         try {
             let number = await exec.exec(`${command} ${checkedFiles}`, null, options);
         } catch (error) {

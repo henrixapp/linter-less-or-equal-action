@@ -42,6 +42,9 @@ const exec = __webpack_require__(423);
             checkedFiles = myOutput.replace("\n", " ");
             myOutput = '';
         }
+        if(checkedFiles == "") {
+            checkedFiles = ".";
+        }
         try {
             let number = await exec.exec(`${command} ${checkedFiles}`, null, options);
         } catch (error) {
