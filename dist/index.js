@@ -38,7 +38,7 @@ const exec = __webpack_require__(423);
         await exec.exec(`git fetch origin  ${compareBranch}`);
         let checkedFiles = '.';
         if(core.getInput("mode")!="all"){
-            await exec.exec(`git diff --name-only ${compareBranch}`,null, options);
+            await exec.exec(`git diff --name-only origin/${compareBranch}`,null, options);
             checkedFiles = myOutput.replace("\n", " ");
             myOutput = '';
         }
