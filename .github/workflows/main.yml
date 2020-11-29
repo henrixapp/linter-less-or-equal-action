@@ -17,7 +17,7 @@ jobs:
         warnings_regexp: \d+ warnings
         compare_branch: main
         mode: changed
-        include: "\w*.js"
+        include: "\\w*.js"
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
