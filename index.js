@@ -32,7 +32,7 @@ const exec = require('@actions/exec');
         let checkedFiles = '.';
         if(core.getInput("mode")!="all"){
             await exec.exec(`git diff --name-only origin/${compareBranch}`,null, options);
-            checkedFiles = myOutput.replace("\n", " ");
+            checkedFiles = myOutput.replace("\\n", " ");
             myOutput = '';
         }
         if(checkedFiles == "") {

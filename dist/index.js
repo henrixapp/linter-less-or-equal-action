@@ -39,7 +39,7 @@ const exec = __webpack_require__(423);
         let checkedFiles = '.';
         if(core.getInput("mode")!="all"){
             await exec.exec(`git diff --name-only origin/${compareBranch}`,null, options);
-            checkedFiles = myOutput.replace("\n", " ");
+            checkedFiles = myOutput.replace("\\n", " ");
             myOutput = '';
         }
         if(checkedFiles == "") {
