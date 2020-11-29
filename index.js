@@ -31,7 +31,7 @@ const exec = require('@actions/exec');
         await exec.exec(`git fetch origin  ${compareBranch}`);
         let checkedFiles = '.';
         if(core.getInput("mode")!="all"){
-            await exec.exec(`git diff --name-only origin/${compareBranch}`,null, options);
+            await exec.exec(`git diff --name-only --diff-filter=M origin/${compareBranch}`,null, options);
             checkedFiles = myOutput.replace(/\n/g, " ");
             myOutput = '';
         }
