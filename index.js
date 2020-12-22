@@ -59,12 +59,15 @@ const exec = require('@actions/exec');
         } catch (error) {
 
         }
+        let total=0;
+        let errors =0;
+        let warnings=0;
         try {
-        let total = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
-        let errors = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
-        let warnings = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
+         total = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
+         errors = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
+         warnings = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
         } catch(e){
-            
+
         }
         console.log(`${total} ${errors} ${warnings}`);
         core.setOutput("errors", errors);
@@ -79,10 +82,13 @@ const exec = require('@actions/exec');
         } catch (error) {
 
         }
+        let errorsB=0;
+        let totalB=0;
+        let warningsB=0;
         try {
-        let totalB = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
-        let errorsB = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
-        let warningsB = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
+         totalB = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
+         errorsB = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
+         warningsB = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
         if(totalB<total){
             core.setFailed("There are now more errors and warnings in total!");
         }
