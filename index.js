@@ -66,8 +66,8 @@ const exec = require('@actions/exec');
         core.setOutput("errors", errors);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
-        
-        await exec.exec(`git stash ; git checkout origin/${compareBranch}`, null,options);
+        await exec.exec("git stash ",null,options);        
+        await exec.exec(` git checkout origin/${compareBranch}`, null,options);
         myOutput = "";
         myError = "";
         try {
