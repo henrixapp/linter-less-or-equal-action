@@ -82,6 +82,7 @@ const exec = __webpack_require__(702);
         } catch (error) {
 
         }
+        try {
         let totalB = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
         let errorsB = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
         let warningsB = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
@@ -94,6 +95,9 @@ const exec = __webpack_require__(702);
         if(warningsB<warnings){
             core.setFailed("There are now more warnings in total!");
         }
+    } catch (error){
+        
+    }
     } catch (error) {
         core.setFailed(error.message);
     }

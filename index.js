@@ -75,6 +75,7 @@ const exec = require('@actions/exec');
         } catch (error) {
 
         }
+        try {
         let totalB = parseInt(myOutput.match(totalRegExp)[0].match(/\d+/));
         let errorsB = parseInt(myOutput.match(errorsRegExp)[0].match(/\d+/));
         let warningsB = parseInt(myOutput.match(warningsRegExp)[0].match(/\d+/));
@@ -87,6 +88,9 @@ const exec = require('@actions/exec');
         if(warningsB<warnings){
             core.setFailed("There are now more warnings in total!");
         }
+    } catch (error){
+        
+    }
     } catch (error) {
         core.setFailed(error.message);
     }
