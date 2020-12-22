@@ -74,7 +74,7 @@ const exec = __webpack_require__(702);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
         
-        await exec.exec(`git stash; git checkout origin/${compareBranch}`, null,options);
+        await exec.exec(`git stash ; git checkout origin/${compareBranch}`, null,options);
         myOutput = "";
         myError = "";
         try {
