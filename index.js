@@ -33,9 +33,9 @@ const exec = require('@actions/exec');
         let addedFiles = '';
         if(core.getInput("mode")!="all"){
             await exec.exec(`git diff --name-only --diff-filter=M origin/${compareBranch}`,null, options);
-            let include = new RegExp(core.getInput("include"));
+            let include = core.getInput("include");
             checkedFiles = myOutput.split(/\n/g).map(function(s){
-                if(include.includes(s)){
+                if(s.includes(include)){
                     return s;
                 }
                 return '';
@@ -44,7 +44,7 @@ const exec = require('@actions/exec');
             myOutput = '';
             await exec.exec(`git diff --name-only --diff-filter=A origin/${compareBranch}`,null, options);
             addedFiles =  myOutput.split(/\n/g).map(function(s){
-                if(include.includes(s)){
+                if(s.includes(include)){
                     return s;
                 }
                 return '';
