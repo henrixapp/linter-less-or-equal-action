@@ -2,12 +2,12 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 238:
+/***/ 856:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-const core = __webpack_require__(24);
-const github = __webpack_require__(16);
-const exec = __webpack_require__(423);
+const core = __webpack_require__(375);
+const github = __webpack_require__(31);
+const exec = __webpack_require__(702);
 (async function () {
     try {
         // `who-to-greet` input defined in action metadata file
@@ -74,7 +74,7 @@ const exec = __webpack_require__(423);
         core.setOutput("warnings", warnings);
         //reset --hard HEAD~1
         
-        await exec.exec(`git checkout origin/${compareBranch}`, null,options);
+        await exec.exec(`git stash; git checkout origin/${compareBranch}`, null,options);
         myOutput = "";
         myError = "";
         try {
@@ -101,7 +101,7 @@ const exec = __webpack_require__(423);
 
 /***/ }),
 
-/***/ 350:
+/***/ 94:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -115,7 +115,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const os = __importStar(__webpack_require__(87));
-const utils_1 = __webpack_require__(369);
+const utils_1 = __webpack_require__(728);
 /**
  * Commands
  *
@@ -187,7 +187,7 @@ function escapeProperty(s) {
 
 /***/ }),
 
-/***/ 24:
+/***/ 375:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,9 +209,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const command_1 = __webpack_require__(350);
-const file_command_1 = __webpack_require__(466);
-const utils_1 = __webpack_require__(369);
+const command_1 = __webpack_require__(94);
+const file_command_1 = __webpack_require__(863);
+const utils_1 = __webpack_require__(728);
 const os = __importStar(__webpack_require__(87));
 const path = __importStar(__webpack_require__(622));
 /**
@@ -432,7 +432,7 @@ exports.getState = getState;
 
 /***/ }),
 
-/***/ 466:
+/***/ 863:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -450,7 +450,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const fs = __importStar(__webpack_require__(747));
 const os = __importStar(__webpack_require__(87));
-const utils_1 = __webpack_require__(369);
+const utils_1 = __webpack_require__(728);
 function issueCommand(command, message) {
     const filePath = process.env[`GITHUB_${command}`];
     if (!filePath) {
@@ -468,7 +468,7 @@ exports.issueCommand = issueCommand;
 
 /***/ }),
 
-/***/ 369:
+/***/ 728:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -494,7 +494,7 @@ exports.toCommandValue = toCommandValue;
 
 /***/ }),
 
-/***/ 423:
+/***/ 702:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -516,7 +516,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const tr = __importStar(__webpack_require__(216));
+const tr = __importStar(__webpack_require__(854));
 /**
  * Exec a command.
  * Output will be streamed to the live console.
@@ -545,7 +545,7 @@ exports.exec = exec;
 
 /***/ }),
 
-/***/ 216:
+/***/ 854:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -571,8 +571,8 @@ const os = __importStar(__webpack_require__(87));
 const events = __importStar(__webpack_require__(614));
 const child = __importStar(__webpack_require__(129));
 const path = __importStar(__webpack_require__(622));
-const io = __importStar(__webpack_require__(202));
-const ioUtil = __importStar(__webpack_require__(120));
+const io = __importStar(__webpack_require__(914));
+const ioUtil = __importStar(__webpack_require__(488));
 /* eslint-disable @typescript-eslint/unbound-method */
 const IS_WINDOWS = process.platform === 'win32';
 /*
@@ -1152,7 +1152,7 @@ class ExecState extends events.EventEmitter {
 
 /***/ }),
 
-/***/ 4:
+/***/ 27:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1209,7 +1209,7 @@ exports.Context = Context;
 
 /***/ }),
 
-/***/ 16:
+/***/ 31:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -1235,8 +1235,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOctokit = exports.context = void 0;
-const Context = __importStar(__webpack_require__(4));
-const utils_1 = __webpack_require__(450);
+const Context = __importStar(__webpack_require__(27));
+const utils_1 = __webpack_require__(473);
 exports.context = new Context.Context();
 /**
  * Returns a hydrated octokit ready to use for GitHub Actions
@@ -1252,7 +1252,7 @@ exports.getOctokit = getOctokit;
 
 /***/ }),
 
-/***/ 235:
+/***/ 944:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -1278,7 +1278,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getApiBaseUrl = exports.getProxyAgent = exports.getAuthString = void 0;
-const httpClient = __importStar(__webpack_require__(628));
+const httpClient = __importStar(__webpack_require__(748));
 function getAuthString(token, options) {
     if (!token && !options.auth) {
         throw new Error('Parameter token or opts.auth is required');
@@ -1302,7 +1302,7 @@ exports.getApiBaseUrl = getApiBaseUrl;
 
 /***/ }),
 
-/***/ 450:
+/***/ 473:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -1328,12 +1328,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOctokitOptions = exports.GitHub = exports.context = void 0;
-const Context = __importStar(__webpack_require__(4));
-const Utils = __importStar(__webpack_require__(235));
+const Context = __importStar(__webpack_require__(27));
+const Utils = __importStar(__webpack_require__(944));
 // octokit + plugins
-const core_1 = __webpack_require__(196);
-const plugin_rest_endpoint_methods_1 = __webpack_require__(865);
-const plugin_paginate_rest_1 = __webpack_require__(445);
+const core_1 = __webpack_require__(794);
+const plugin_rest_endpoint_methods_1 = __webpack_require__(841);
+const plugin_paginate_rest_1 = __webpack_require__(549);
 exports.context = new Context.Context();
 const baseUrl = Utils.getApiBaseUrl();
 const defaults = {
@@ -1363,7 +1363,7 @@ exports.getOctokitOptions = getOctokitOptions;
 
 /***/ }),
 
-/***/ 628:
+/***/ 748:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1371,7 +1371,7 @@ exports.getOctokitOptions = getOctokitOptions;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const http = __webpack_require__(605);
 const https = __webpack_require__(211);
-const pm = __webpack_require__(305);
+const pm = __webpack_require__(133);
 let tunnel;
 var HttpCodes;
 (function (HttpCodes) {
@@ -1790,7 +1790,7 @@ class HttpClient {
         if (useProxy) {
             // If using proxy, need tunnel
             if (!tunnel) {
-                tunnel = __webpack_require__(958);
+                tunnel = __webpack_require__(113);
             }
             const agentOptions = {
                 maxSockets: maxSockets,
@@ -1906,7 +1906,7 @@ exports.HttpClient = HttpClient;
 
 /***/ }),
 
-/***/ 305:
+/***/ 133:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -1971,7 +1971,7 @@ exports.checkBypass = checkBypass;
 
 /***/ }),
 
-/***/ 120:
+/***/ 488:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -2173,7 +2173,7 @@ function isUnixExecutable(stats) {
 
 /***/ }),
 
-/***/ 202:
+/***/ 914:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -2191,7 +2191,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const childProcess = __webpack_require__(129);
 const path = __webpack_require__(622);
 const util_1 = __webpack_require__(669);
-const ioUtil = __webpack_require__(120);
+const ioUtil = __webpack_require__(488);
 const exec = util_1.promisify(childProcess.exec);
 /**
  * Copies a file or folder.
@@ -2470,7 +2470,7 @@ function copyFile(srcFile, destFile, force) {
 
 /***/ }),
 
-/***/ 948:
+/***/ 48:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -2527,7 +2527,7 @@ exports.createTokenAuth = createTokenAuth;
 
 /***/ }),
 
-/***/ 196:
+/***/ 794:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -2535,11 +2535,11 @@ exports.createTokenAuth = createTokenAuth;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var universalUserAgent = __webpack_require__(163);
-var beforeAfterHook = __webpack_require__(850);
-var request = __webpack_require__(364);
-var graphql = __webpack_require__(660);
-var authToken = __webpack_require__(948);
+var universalUserAgent = __webpack_require__(267);
+var beforeAfterHook = __webpack_require__(250);
+var request = __webpack_require__(723);
+var graphql = __webpack_require__(957);
+var authToken = __webpack_require__(48);
 
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {};
@@ -2709,7 +2709,7 @@ exports.Octokit = Octokit;
 
 /***/ }),
 
-/***/ 509:
+/***/ 762:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -2717,8 +2717,8 @@ exports.Octokit = Octokit;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var isPlainObject = __webpack_require__(987);
-var universalUserAgent = __webpack_require__(163);
+var isPlainObject = __webpack_require__(540);
+var universalUserAgent = __webpack_require__(267);
 
 function lowercaseKeys(object) {
   if (!object) {
@@ -3107,7 +3107,7 @@ exports.endpoint = endpoint;
 
 /***/ }),
 
-/***/ 660:
+/***/ 957:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -3115,8 +3115,8 @@ exports.endpoint = endpoint;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var request = __webpack_require__(364);
-var universalUserAgent = __webpack_require__(163);
+var request = __webpack_require__(723);
+var universalUserAgent = __webpack_require__(267);
 
 const VERSION = "4.5.7";
 
@@ -3223,7 +3223,7 @@ exports.withCustomRequest = withCustomRequest;
 
 /***/ }),
 
-/***/ 445:
+/***/ 549:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -3363,7 +3363,7 @@ exports.paginateRest = paginateRest;
 
 /***/ }),
 
-/***/ 865:
+/***/ 841:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -4525,7 +4525,7 @@ exports.restEndpointMethods = restEndpointMethods;
 
 /***/ }),
 
-/***/ 42:
+/***/ 628:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -4535,8 +4535,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var deprecation = __webpack_require__(280);
-var once = _interopDefault(__webpack_require__(953));
+var deprecation = __webpack_require__(542);
+var once = _interopDefault(__webpack_require__(75));
 
 const logOnce = once(deprecation => console.warn(deprecation));
 /**
@@ -4588,7 +4588,7 @@ exports.RequestError = RequestError;
 
 /***/ }),
 
-/***/ 364:
+/***/ 723:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -4598,11 +4598,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var endpoint = __webpack_require__(509);
-var universalUserAgent = __webpack_require__(163);
-var isPlainObject = __webpack_require__(987);
-var nodeFetch = _interopDefault(__webpack_require__(460));
-var requestError = __webpack_require__(42);
+var endpoint = __webpack_require__(762);
+var universalUserAgent = __webpack_require__(267);
+var isPlainObject = __webpack_require__(540);
+var nodeFetch = _interopDefault(__webpack_require__(450));
+var requestError = __webpack_require__(628);
 
 const VERSION = "5.4.10";
 
@@ -4744,12 +4744,12 @@ exports.request = request;
 
 /***/ }),
 
-/***/ 850:
+/***/ 250:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var register = __webpack_require__(435)
-var addHook = __webpack_require__(339)
-var removeHook = __webpack_require__(468)
+var register = __webpack_require__(310)
+var addHook = __webpack_require__(803)
+var removeHook = __webpack_require__(756)
 
 // bind with array of arguments: https://stackoverflow.com/a/21792913
 var bind = Function.bind
@@ -4808,7 +4808,7 @@ module.exports.Collection = Hook.Collection
 
 /***/ }),
 
-/***/ 339:
+/***/ 803:
 /***/ ((module) => {
 
 module.exports = addHook
@@ -4861,7 +4861,7 @@ function addHook (state, kind, name, hook) {
 
 /***/ }),
 
-/***/ 435:
+/***/ 310:
 /***/ ((module) => {
 
 module.exports = register
@@ -4896,7 +4896,7 @@ function register (state, name, method, options) {
 
 /***/ }),
 
-/***/ 468:
+/***/ 756:
 /***/ ((module) => {
 
 module.exports = removeHook
@@ -4920,7 +4920,7 @@ function removeHook (state, name, method) {
 
 /***/ }),
 
-/***/ 280:
+/***/ 542:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -4948,7 +4948,7 @@ exports.Deprecation = Deprecation;
 
 /***/ }),
 
-/***/ 987:
+/***/ 540:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -4994,7 +4994,7 @@ exports.isPlainObject = isPlainObject;
 
 /***/ }),
 
-/***/ 460:
+/***/ 450:
 /***/ ((module, exports, __webpack_require__) => {
 
 "use strict";
@@ -5159,7 +5159,7 @@ FetchError.prototype.name = 'FetchError';
 
 let convert;
 try {
-	convert = __webpack_require__(347).convert;
+	convert = __webpack_require__(223).convert;
 } catch (e) {}
 
 const INTERNALS = Symbol('Body internals');
@@ -6651,10 +6651,10 @@ exports.FetchError = FetchError;
 
 /***/ }),
 
-/***/ 953:
+/***/ 75:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var wrappy = __webpack_require__(985)
+var wrappy = __webpack_require__(331)
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
 
@@ -6700,22 +6700,22 @@ function onceStrict (fn) {
 
 /***/ }),
 
-/***/ 958:
+/***/ 113:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__(306);
+module.exports = __webpack_require__(62);
 
 
 /***/ }),
 
-/***/ 306:
+/***/ 62:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 
 var net = __webpack_require__(631);
-var tls = __webpack_require__(818);
+var tls = __webpack_require__(16);
 var http = __webpack_require__(605);
 var https = __webpack_require__(211);
 var events = __webpack_require__(614);
@@ -6980,7 +6980,7 @@ exports.debug = debug; // for test
 
 /***/ }),
 
-/***/ 163:
+/***/ 267:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -7006,7 +7006,7 @@ exports.getUserAgent = getUserAgent;
 
 /***/ }),
 
-/***/ 985:
+/***/ 331:
 /***/ ((module) => {
 
 // Returns a wrapper function that returns a wrapped callback
@@ -7046,7 +7046,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 347:
+/***/ 223:
 /***/ ((module) => {
 
 module.exports = eval("require")("encoding");
@@ -7134,7 +7134,7 @@ module.exports = require("stream");;
 
 /***/ }),
 
-/***/ 818:
+/***/ 16:
 /***/ ((module) => {
 
 "use strict";
@@ -7204,6 +7204,6 @@ module.exports = require("zlib");;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(238);
+/******/ 	return __webpack_require__(856);
 /******/ })()
 ;
